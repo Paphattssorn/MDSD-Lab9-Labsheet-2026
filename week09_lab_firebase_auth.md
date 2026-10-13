@@ -539,11 +539,20 @@ Widget build(BuildContext context) {
 
 > ✅ **Checkpoint 4.1** ถ่ายภาพหน้าจอ 3 ภาพเรียงกัน คือ (ก) แอปตอนเพิ่งเปิดขึ้นมาครั้งแรกแบบยังไม่ล็อกอิน แสดงหน้า Login (ข) หลังล็อกอินสำเร็จ แอปสลับไปแสดง `MainScaffold` อัตโนมัติโดยไม่ต้องกดอะไรเพิ่ม และ (ค) หลังกด "ออกจากระบบ" แอปสลับกลับไปหน้า Login เอง อธิบายว่าทำไมการใช้ `StreamBuilder` ฟัง `authStateChanges()` จึงทำให้ไม่ต้องเขียนโค้ดสั่ง Navigate ไปมาเอง
 
-
-```text
 บันทึกรูปผลลัพธ์ที่นี่ (3 ภาพ) และคำอธิบาย
-```
+- (ก) แอปตอนเพิ่งเปิดขึ้นมาครั้งแรกแบบยังไม่ล็อกอิน แสดงหน้า Login
+<img width="306" height="647" alt="image" src="https://github.com/user-attachments/assets/68ebd1bc-90c4-4c98-b523-b167cbfdb742" />
 
+- (ข) หลังล็อกอินสำเร็จ แอปสลับไปแสดง `MainScaffold` อัตโนมัติโดยไม่ต้องกดอะไรเพิ่ม
+<img width="295" height="646" alt="image" src="https://github.com/user-attachments/assets/3aaa6986-77c3-4e4a-9997-38c798443036" />
+
+- (ค) หลังกด "ออกจากระบบ" แอปสลับกลับไปหน้า Login เอง
+<img width="312" height="666" alt="image" src="https://github.com/user-attachments/assets/b0d5a0c8-42c2-466b-a353-4ed9352f6689" />
+
+- อธิบายว่าทำไมการใช้ `StreamBuilder` ฟัง `authStateChanges()` จึงทำให้ไม่ต้องเขียนโค้ดสั่ง Navigate ไปมาเอง
+   - authStateChanges() เป็น Stream ที่คอยส่งข้อมูลสถานะผู้ใช้ (User?) ออกมาแบบเรียลไทม์ ทุกครั้งที่มีการล็อกอินสำเร็จ Stream จะปล่อยออบเจกต์ User ออกมา และเมื่อกดออกจากระบบ Stream จะปล่อยค่า null ออกมา
+
+   - StreamBuilder ทำหน้าที่คอยดักฟัง (Listen) สตรีมนี้อย่างต่อเนื่อง เมื่อสถานะเปลี่ยน StreamBuilder จะสั่ง Rebuild ตัวเองทันที และสลับ Widget ระหว่าง LoginPage() (เมื่อเป็น null) กับ MainScaffold() (เมื่อมี User) ให้โดยอัตโนมัติ จึงไม่ต้องเขียนคำสั่ง Navigator.push หรือ Navigator.pop สลับหน้าด้วยตนเอง
 ---
 
 ## ส่วนที่ 5: ขยาย Repository Pattern ด้วย ItemRepositoryFirestore
