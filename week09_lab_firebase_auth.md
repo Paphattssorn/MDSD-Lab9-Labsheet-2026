@@ -566,6 +566,8 @@ Widget build(BuildContext context) {
 
 บันทึกคำตอบของคุณที่นี่
 
+<img width="480" height="991" alt="image" src="https://github.com/user-attachments/assets/af7ad74c-556e-4513-acc7-f4e44e1bf935" />
+
 1.ทำไมจึงเพิ่ม ItemRepositoryFirestore ใหม่ แทนที่จะแก้ของเดิมหรือเรียกตรงจาก HomePage?
 ไม่แก้ของเดิม: เพื่อปฏิบัติตามหลัก Open/Closed (ขยายได้แต่ไม่แก้ของเดิมที่ทำงานได้อยู่แล้ว) และ Single Responsibility (แยกความรับผิดชอบ Fake Store API กับ Firestore ออกจากกัน ไม่ให้โค้ดซับซ้อน)
 ไม่เรียกตรงจาก HomePage: ป้องกัน Tight Coupling เพื่อไม่ให้หน้าจอผูกติดกับ Firebase โดยตรง ทำให้สลับแหล่งข้อมูลได้ง่ายและเขียน Test สะดวก
