@@ -566,8 +566,6 @@ Widget build(BuildContext context) {
 
 บันทึกคำตอบของคุณที่นี่
 
-<img width="480" height="991" alt="image" src="https://github.com/user-attachments/assets/af7ad74c-556e-4513-acc7-f4e44e1bf935" />
-
 1.ทำไมจึงเพิ่ม ItemRepositoryFirestore ใหม่ แทนที่จะแก้ของเดิมหรือเรียกตรงจาก HomePage?
 ไม่แก้ของเดิม: เพื่อปฏิบัติตามหลัก Open/Closed (ขยายได้แต่ไม่แก้ของเดิมที่ทำงานได้อยู่แล้ว) และ Single Responsibility (แยกความรับผิดชอบ Fake Store API กับ Firestore ออกจากกัน ไม่ให้โค้ดซับซ้อน)
 ไม่เรียกตรงจาก HomePage: ป้องกัน Tight Coupling เพื่อไม่ให้หน้าจอผูกติดกับ Firebase โดยตรง ทำให้สลับแหล่งข้อมูลได้ง่ายและเขียน Test สะดวก
@@ -648,7 +646,7 @@ final pages = [
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอ Home ที่แสดงสินค้าจากทั้งสองแหล่งข้อมูลปนกันอยู่ในลิสต์เดียว พร้อม Badge ที่แยกแหล่งที่มาชัดเจน (ถ้ายังไม่เคยมีประกาศจริงใน Firestore เลย ให้ทำส่วนที่ 6 ให้เสร็จก่อนแล้วย้อนกลับมาถ่ายภาพ Checkpoint นี้) อธิบายว่าการออกแบบให้ `HomePage` ไม่รู้จัก `ItemRepositoryApi`/`ItemRepositoryFirestore` โดยตรง แต่รู้จักผ่าน Interface `ItemRepository` เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร
 
 บันทึกรูปผลลัพธ์ที่นี่ และคำอธิบาย
-
+<img width="480" height="991" alt="image" src="https://github.com/user-attachments/assets/dc7ac163-76ad-4001-89bc-89b8d6174b07" />
 
 - อธิบายว่าการออกแบบให้ HomePage ไม่รู้จัก ItemRepositoryApi หรือ ItemRepositoryFirestore โดยตรง แต่รู้จักผ่าน Interface ItemRepository เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร?
 
