@@ -645,9 +645,22 @@ final pages = [
 
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอ Home ที่แสดงสินค้าจากทั้งสองแหล่งข้อมูลปนกันอยู่ในลิสต์เดียว พร้อม Badge ที่แยกแหล่งที่มาชัดเจน (ถ้ายังไม่เคยมีประกาศจริงใน Firestore เลย ให้ทำส่วนที่ 6 ให้เสร็จก่อนแล้วย้อนกลับมาถ่ายภาพ Checkpoint นี้) อธิบายว่าการออกแบบให้ `HomePage` ไม่รู้จัก `ItemRepositoryApi`/`ItemRepositoryFirestore` โดยตรง แต่รู้จักผ่าน Interface `ItemRepository` เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร
 
-```text
 บันทึกรูปผลลัพธ์ที่นี่ และคำอธิบาย
-```
+
+
+- อธิบายว่าการออกแบบให้ HomePage ไม่รู้จัก ItemRepositoryApi หรือ ItemRepositoryFirestore โดยตรง แต่รู้จักผ่าน Interface ItemRepository เท่านั้น ช่วยให้ทดสอบหรือเปลี่ยนแหล่งข้อมูลในอนาคตง่ายขึ้นอย่างไร?
+
+ลดการผูกมัดของโค้ด (Loose Coupling & Dependency Inversion Principle - DIP):
+HomePage สนใจเพียงแค่สัญญา (Contract) ว่าอะไรก็ตามที่เป็น ItemRepository จะต้องมีคำสั่ง getItems() ส่งข้อมูลกลับมาให้
+HomePage จึงไม่ต้องเขียน Logic ซับซ้อนว่าต้องต่อเน็ตเวิร์กผ่าน HTTP หรือต้องเรียก Firebase SDK ส่งผลให้โค้ดสะอาด แยกหน้าที่การทำงานชัดเจน (Separation of Concerns)
+
+เพิ่มความสะดวกและรวดเร็วในการทดสอบ (Testability & Mocking):
+เมื่อต้องการทำ Widget Test หรือ Unit Test ของ HomePage เราสามารถสร้าง MockItemRepository หรือ FakeItemRepository ที่ส่งข้อมูลคงที่จำลองออกมาทดสอบ UI ได้ทันที
+ไม่จำเป็นต้องเชื่อมต่ออินเทอร์เน็ต, ไม่ต้องเชื่อมต่อ Firebase Firestore จริง, ไม่ต้องกังวลเรื่อง Network Timeout และไม่ต้องเสียค่าโควตาการ Read ข้อมูลของ Firebase ในระหว่างรันเทสต์
+
+ง่ายต่อการขยายและปรับเปลี่ยนแหล่งข้อมูลในอนาคต (Extensibility & Open-Closed Principle):
+หากในอนาคตทีมต้องการเปลี่ยนฐานข้อมูล (เช่น ย้ายจาก Firestore ไปเป็น Supabase หรือ SQLite/Local Database) หรือเพิ่มแหล่งข้อมูลที่ 3 เราเพียงแค่สร้าง Class ใหม่ที่ implements ItemRepository แล้วส่งเข้ามาใน HomePage
+ไม่ต้องแก้ไขโค้ดภายใน HomePage แม้แต่บรรทัดเดียว ทำให้ลดความเสี่ยงต่อการเกิด Bug กับหน้า UI เดิม
 
 ---
 
