@@ -774,9 +774,19 @@ service cloud.firestore {
 
 > ✅ **Checkpoint 8.1** ถ่ายภาพหน้าจอผลการทดสอบทั้ง 4 ข้อ 
 
-```text
 บันทึกรูปผลลัพธ์ที่นี่ 
-```
+- (ก)
+ <img width="487" height="1011" alt="image" src="https://github.com/user-attachments/assets/98f38dd0-d7cc-4317-a004-c4b3138d22a4" />
+
+- (ข)
+ <img width="1257" height="1073" alt="image" src="https://github.com/user-attachments/assets/f1ef1fa4-9b44-40cf-9eb4-7631d0e10f6e" />
+
+- (ค)
+ <img width="480" height="1005" alt="image" src="https://github.com/user-attachments/assets/83e1f752-8d1d-46a8-87ed-ba9ed0b6f2bb" />
+
+- (ง)
+![Uploading image.png…]()
+
 
 ---
 
